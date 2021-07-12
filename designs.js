@@ -4,8 +4,12 @@ var colorSelector = document.getElementById('colorPicker');
 var gridHeight = document.getElementById('inputHeight');
 var gridWidth = document.getElementById('inputWidth');
 // When size is submitted by the user, call makeGrid()
+/**
+ * @desc a function that pulls height and width of the grid from users' input
+ * @param {string} e = an event object to prevent default behavior of submit event handler
+ */
 document.getElementById('sizePicker').addEventListener('submit', function(e) {
-    e.preventDefault()
+    e.preventDefault();
     const rows = gridHeight.value;
     const columns = gridWidth.value;
 
@@ -15,7 +19,11 @@ document.getElementById('sizePicker').addEventListener('submit', function(e) {
 // set the table
 const designCanvas = document.getElementById('pixelCanvas');
 
-// define a function to create a grid based on the size selected by the user
+/**
+ * @desc a function to create a grid based on the size selected by the user
+ * @param int rows = number of rows representing the height of the grid
+ * @param int columns = number of columns representing the width of the grid
+ */
 function makeGrid(rows, columns) {
     designCanvas.innerHTML = '';   // to reset the grid
     for (let m = 0; m < rows; m++) {          
@@ -26,9 +34,9 @@ function makeGrid(rows, columns) {
         }
         designCanvas.appendChild(trElement);
     }
-};
+}
 
-// color the grid to create pixel art
+// An event listener to color the grid when the user clicks cell(s) in the grid
 designCanvas.addEventListener('click', function(e) {
     const color = colorSelector.value;
     e.target.style.backgroundColor = color;
